@@ -313,7 +313,6 @@
 		3EA0FEEE1ABFA21A00280D5B /* WebStyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0FE851ABFA21A00280D5B /* WebStyleViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3EA0FEF41ABFB86D00280D5B /* CBIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0FEF31ABFB86D00280D5B /* CBIntroViewController.m */; };
 		3EA0FEF71ABFC31B00280D5B /* CBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0FEF61ABFC31B00280D5B /* CBLoginViewController.m */; };
-		3EA13A8C1AE5E32700CBAB89 /* ToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA13A8B1AE5E32700CBAB89 /* ToastView.m */; };
 		3EA1A9211AC122EE00B6C2C4 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA1A9201AC122EE00B6C2C4 /* CustomCell.xib */; };
 		3EA1A9241AC13F4900B6C2C4 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA1A9231AC13F4900B6C2C4 /* CustomCell.m */; };
 		3EA1A9271AC14AD900B6C2C4 /* CBList102ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA1A9261AC14AD900B6C2C4 /* CBList102ViewController.m */; };
@@ -775,8 +774,6 @@
 		3EA0FEF31ABFB86D00280D5B /* CBIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIntroViewController.m; sourceTree = "<group>"; };
 		3EA0FEF51ABFC31B00280D5B /* CBLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBLoginViewController.h; sourceTree = "<group>"; };
 		3EA0FEF61ABFC31B00280D5B /* CBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBLoginViewController.m; sourceTree = "<group>"; };
-		3EA13A8A1AE5E32700CBAB89 /* ToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToastView.h; path = "../../../../../../2_Collabo(콜라보)_Bizplay/BizplayIOS/Bizplay/Collaboration/ToastView.h"; sourceTree = "<group>"; };
-		3EA13A8B1AE5E32700CBAB89 /* ToastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ToastView.m; path = "../../../../../../2_Collabo(콜라보)_Bizplay/BizplayIOS/Bizplay/Collaboration/ToastView.m"; sourceTree = "<group>"; };
 		3EA1A9201AC122EE00B6C2C4 /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		3EA1A9221AC13F4900B6C2C4 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		3EA1A9231AC13F4900B6C2C4 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
@@ -1316,8 +1313,6 @@
 		3EA0FDB61ABFA21A00280D5B /* JLToast */ = {
 			isa = PBXGroup;
 			children = (
-				3EA13A8A1AE5E32700CBAB89 /* ToastView.h */,
-				3EA13A8B1AE5E32700CBAB89 /* ToastView.m */,
 				3EA0FDB71ABFA21A00280D5B /* JLToast.h */,
 				3EA0FDB81ABFA21A00280D5B /* JLToast.swift */,
 				3EA0FDB91ABFA21A00280D5B /* JLToastCenter.swift */,
@@ -2095,7 +2090,6 @@
 				3EA0FE9E1ABFA21A00280D5B /* SBJSON.m in Sources */,
 				3EA0FE8E1ABFA21A00280D5B /* KLTile.m in Sources */,
 				3E9F16631AD4C31400D80325 /* CBGroupViewCell.m in Sources */,
-				3EA13A8C1AE5E32700CBAB89 /* ToastView.m in Sources */,
 				3EA0FE921ABFA21A00280D5B /* UIView+Effect.m in Sources */,
 				3EA0FEBA1ABFA21A00280D5B /* SDWebImageDecoder.m in Sources */,
 				3EBD2D051ADCC5C90031F129 /* CBCreateCollaboViewController.m in Sources */,
