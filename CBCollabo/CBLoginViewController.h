@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WCViewController.h"
 
-@interface LoginViewController : UIViewController
+@interface CBLoginViewController : WCViewController<UITextFieldDelegate>
+- (IBAction)loginButtonPress:(UIButton *)sender;
+- (IBAction)checkLogin:(UIButton *)sender;
+- (IBAction)onGroupButtonPressed:(UIButton *)sender;
 
 @end

@@ -79,81 +79,70 @@
 
 
 + (void)settingLeftButton:(id)aTarget action:(SEL)aAction normalImageCode:(NSString *)aNormalImageCode highlightImageCode:(NSString *)aHighlightImageCode {
-	if ([aTarget isKindOfClass:[UIViewController class]] == NO)
-		return;
+    if ([aTarget isKindOfClass:[UIViewController class]] == NO)
+        return;
     
-	if ([SysUtils isNull:aNormalImageCode] == YES)
-		return;
-	
-	UIViewController* calleeViewCtrl	= aTarget;
-	UIImage* imgNormal					= [UIImage imageNamed:aNormalImageCode];
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-
-        UIButton* btnNewLeft				= [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, imgNormal.size.width/2, imgNormal.size.height/2)];
-        
-        [btnNewLeft setTag:kBackButtonTag];
-        [btnNewLeft setBackgroundImage:imgNormal forState:UIControlStateNormal];
-        
-        if ([SysUtils isNull:aHighlightImageCode] == NO)
-            [btnNewLeft setBackgroundImage:[UIImage imageNamed:aHighlightImageCode] forState:UIControlStateHighlighted];
-        
-        [btnNewLeft addTarget:calleeViewCtrl action:aAction forControlEvents:UIControlEventTouchUpInside];
-        
-        UIBarButtonItem* btnNewBarLeft					= [[UIBarButtonItem alloc] initWithCustomView:btnNewLeft];
-        calleeViewCtrl.navigationItem.leftBarButtonItem	= btnNewBarLeft;
-        
-        [btnNewBarLeft release];
-        [btnNewLeft release];
-    }else{
-        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0.0f, imgNormal.size.width, 44)];
-        
-        UIButton* btnNewLeft				= [[UIButton alloc] initWithFrame:CGRectMake(6.0f, (44-(imageView.frame.size.width/2))/2, imgNormal.size.width/2, imgNormal.size.height/2)];
-        [btnNewLeft setTag:kBackButtonTag];
-        [btnNewLeft setBackgroundImage:imgNormal forState:UIControlStateNormal];
-        
-        if ([SysUtils isNull:aHighlightImageCode] == NO)
-            [btnNewLeft setBackgroundImage:[UIImage imageNamed:aHighlightImageCode] forState:UIControlStateHighlighted];
-        
-        [btnNewLeft addTarget:calleeViewCtrl action:aAction forControlEvents:UIControlEventTouchUpInside];
-        [imageView addSubview:btnNewLeft];
-        
-        UIBarButtonItem* btnNewBarLeft					= [[UIBarButtonItem alloc] initWithCustomView:imageView];
-        calleeViewCtrl.navigationItem.leftBarButtonItem	= btnNewBarLeft;
-        
-        [btnNewBarLeft release];
-        [btnNewLeft release];
-    }
+    if ([SysUtils isNull:aNormalImageCode] == YES)
+        return;
+    
+    UIViewController* calleeViewCtrl	= aTarget;
+    UIImage* imgNormal					= [UIImage imageNamed:aNormalImageCode];
+    UIButton* btnNewLeft				= [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, imgNormal.size.width/2, imgNormal.size.height/2)];
+    
+    [btnNewLeft setTag:kBackButtonTag];
+    [btnNewLeft setBackgroundImage:imgNormal forState:UIControlStateNormal];
+    
+    if ([SysUtils isNull:aHighlightImageCode] == NO)
+        [btnNewLeft setBackgroundImage:[UIImage imageNamed:aHighlightImageCode] forState:UIControlStateHighlighted];
+    
+    [btnNewLeft addTarget:calleeViewCtrl action:aAction forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem* btnNewBarLeft					= [[UIBarButtonItem alloc] initWithCustomView:btnNewLeft];
+    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]
+                                       initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                       target:nil action:nil];
+    negativeSpacer.width = -10;
+    [calleeViewCtrl.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:negativeSpacer, btnNewBarLeft, nil]];
+    
+    [btnNewBarLeft release];
+    [btnNewLeft release];
 
     
 }
 
 
 + (void)settingRightButton:(id)aTarget action:(SEL)aAction normalImageCode:(NSString *)aNormalImageCode highlightImageCode:(NSString *)aHighlightImageCode {
-	if ([aTarget isKindOfClass:[UIViewController class]] == NO)
-		return;
-	
-	if ([SysUtils isNull:aNormalImageCode] == YES)
-		return;
-	
-	UIViewController* calleeViewCtrl	= aTarget;
-	UIImage* imgNormal					= [UIImage imageNamed:aNormalImageCode];
-	UIButton* btnNewRight				= [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, imgNormal.size.width/2, imgNormal.size.height/2)];
-	
-	[btnNewRight setTag:kRightButtonTag];
-	[btnNewRight setBackgroundImage:imgNormal forState:UIControlStateNormal];
-	
-	if ([SysUtils isNull:aHighlightImageCode] == NO)
-		[btnNewRight setBackgroundImage:[UIImage imageNamed:aHighlightImageCode] forState:UIControlStateHighlighted];
-	
-	[btnNewRight addTarget:calleeViewCtrl action:aAction forControlEvents:UIControlEventTouchUpInside];
-	
-	UIBarButtonItem* btnNewBarRight						= [[UIBarButtonItem alloc] initWithCustomView:btnNewRight];
-	calleeViewCtrl.navigationItem.rightBarButtonItem	= btnNewBarRight;
-	
-	[btnNewBarRight release];
-	[btnNewRight release];
+    if ([aTarget isKindOfClass:[UIViewController class]] == NO)
+        return;
+    
+    if ([SysUtils isNull:aNormalImageCode] == YES)
+        return;
+    
+    UIViewController* calleeViewCtrl	= aTarget;
+    //	UIImage* imgNormal					= [UIImage imageNamed:[SysUtils imageCodeToFileName:aNormalImageCode]];
+    UIImage* imgNormal					= [UIImage imageNamed:aNormalImageCode];
+    UIButton* btnNewRight				= [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, imgNormal.size.width/2, imgNormal.size.height/2)];
+    
+    [btnNewRight setTag:kRightButtonTag];
+    [btnNewRight setBackgroundImage:imgNormal forState:UIControlStateNormal];
+    
+    if ([SysUtils isNull:aHighlightImageCode] == NO)
+        //		[btnNewRight setBackgroundImage:[UIImage imageNamed:[SysUtils imageCodeToFileName:aHighlightImageCode]] forState:UIControlStateHighlighted];
+        [btnNewRight setBackgroundImage:[UIImage imageNamed:aHighlightImageCode] forState:UIControlStateHighlighted];
+    
+    [btnNewRight addTarget:calleeViewCtrl action:aAction forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem* btnNewBarRight						= [[UIBarButtonItem alloc] initWithCustomView:btnNewRight];
+    
+    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]
+                                       initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                       target:nil action:nil];
+    negativeSpacer.width = -10;
+    [calleeViewCtrl.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:negativeSpacer, btnNewBarRight, nil]];
+    
+    [btnNewBarRight release];
+    [btnNewRight release];
 }
-
 
 + (void)settingBackground:(id)aTarget dx:(CGFloat)dx dy:(CGFloat)dy {
 	if ([aTarget isKindOfClass:[UIViewController class]] == NO)

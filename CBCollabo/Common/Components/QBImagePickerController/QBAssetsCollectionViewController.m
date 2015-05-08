@@ -62,20 +62,22 @@
         self.navigationItem.rightBarButtonItem.enabled = [self validateNumberOfSelections:self.imagePickerController.selectedAssetURLs.count];
     }
     
-    UIImage * image = [UIImage imageNamed:@"top_back_btn.png"];
-    CGSize sacleSize = CGSizeMake(40, 30);
-    UIGraphicsBeginImageContextWithOptions(sacleSize, NO, 0.0);
-    [image drawInRect:CGRectMake(0, 0, sacleSize.width, sacleSize.height)];
-    UIImage * resizedImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+    [AppUtils settingLeftButton:self action:@selector(BackAction:) normalImageCode:@"top_back_btn.png" highlightImageCode:@"top_back_btn_p"];
     
-    UIBarButtonItem *Back =[[UIBarButtonItem alloc]initWithImage:resizedImage landscapeImagePhone:nil style:UIBarButtonItemStyleDone target:self action:@selector(BackAction:)];
-    
-    self.navigationItem.leftBarButtonItems  = @[Back];
-    
-    UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, -20, [[UIScreen mainScreen] bounds].size.width, 22)];
-    statusBarView.backgroundColor = [UIColor colorWithRed:95/255.0 green:90/255.0 blue:185/255.0 alpha:1];
-    [self.navigationController.navigationBar addSubview:statusBarView];
+//    UIImage * image = [UIImage imageNamed:@"top_back_btn.png"];
+//    CGSize sacleSize = CGSizeMake(40, 30);
+//    UIGraphicsBeginImageContextWithOptions(sacleSize, NO, 0.0);
+//    [image drawInRect:CGRectMake(0, 0, sacleSize.width, sacleSize.height)];
+//    UIImage * resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    
+//    UIBarButtonItem *Back =[[UIBarButtonItem alloc]initWithImage:resizedImage landscapeImagePhone:nil style:UIBarButtonItemStyleDone target:self action:@selector(BackAction:)];
+//    
+//    self.navigationItem.leftBarButtonItems  = @[Back];
+//    
+//    UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, -20, [[UIScreen mainScreen] bounds].size.width, 22)];
+//    statusBarView.backgroundColor = [UIColor colorWithRed:95/255.0 green:90/255.0 blue:185/255.0 alpha:1];
+//    [self.navigationController.navigationBar addSubview:statusBarView];
 }
 -(void)BackAction:(id)Sender{
     [self.navigationController popViewControllerAnimated:YES];
@@ -132,6 +134,7 @@
 //        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
 //        [self.navigationItem setRightBarButtonItem:doneButton animated:NO];
         
+//        [AppUtils settingRightButton:self action:@selector(done:) normalImageCode:@"top_complete_btn.png" highlightImageCode:@"top_complete_btn_p.png"];
       
         UIImage * image = [UIImage imageNamed:@"top_complete_btn.png"];
         CGSize sacleSize = CGSizeMake(40, 30);

@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface CBCustomCellSearch : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *CBImage;
+@property (weak, nonatomic) IBOutlet UILabel *CBTitle;
+@property (weak, nonatomic) IBOutlet UILabel *CBDate;
 
 @end

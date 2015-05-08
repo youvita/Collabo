@@ -15,7 +15,15 @@
 #import "SpinnerView.h"
 #import "AllUtils.h"
 
+@protocol CBCreateViewControllerDelegate <NSObject>
+
+@optional
+- (void)addFinished;
+
+@end
+
 @interface CBCreateViewController : WCViewController <UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic, weak)id<CBCreateViewControllerDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *CBScrollViewListDelete;
 @property (weak, nonatomic) IBOutlet UIImageView *CBScrollViewListImage;
@@ -24,7 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *CBTabPhoneLine;
 @property (weak, nonatomic) IBOutlet UIImageView *CBTabPeopleLine;
 @property (weak, nonatomic) IBOutlet UIImageView *CBTabContactLine;
-@property (retain, nonatomic) IBOutlet UIView *CBContentViewController;
+
 
 - (IBAction)CBScrollViewListDeleteButtonPress:(UIButton *)sender;
 
@@ -32,4 +40,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *CBTabView;
 
+@property (strong, nonatomic)NSString *COLABO_SRNO;
+@property (nonatomic)BOOL isCreateColabo;
 @end

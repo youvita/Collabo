@@ -8,8 +8,10 @@
 
 #import "CBCreateViewController.h"
 #import "CBCreateViewCell.h"
+#import "CBGroupViewController.h"
+#import "CBCreateCollaboViewController.h"
 
-#define kKeyboarOffset 90
+#define kKeyXOffset 60
 
 @interface CBCreateViewController (){
     UIButton *TabRecentButton;
@@ -18,8 +20,17 @@
     UIButton *TabContactButton;
     SpinnerView *spinnerView;
     NSArray *respDataArray;
+    NSMutableArray *resDataTemp;
     NSMutableArray *personArray;
+    NSMutableArray *personDeleteArray;
+    NSMutableArray *viewArray;
+    NSMutableDictionary *temp;
     UIView *personView;
+    int xOffset;
+    int personTagCount;
+    NSString *_COLABO_SRNO;
+    
+    NSMutableSet *SENSet;
 
 }
 
@@ -33,12 +44,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    xOffset = 18; // defult x poin
+    
     TabRecentButton = (UIButton*)[self.view viewWithTag:1];
     TabPhoneButton = (UIButton*)[self.view viewWithTag:2];
     TabPeopleButton = (UIButton*)[self.view viewWithTag:3];
     TabContactButton = (UIButton*)[self.view viewWithTag:4];
     
     personArray = [[NSMutableArray alloc] init];
+    personDeleteArray = [[NSMutableArray alloc] init];
+    viewArray = [[NSMutableArray alloc] init];
+   
+    self.CBScrollViewListDelete.backgroundColor = [UIColor whiteColor];
     
     // Set check defult tab
     TabRecentButton.selected = YES;
@@ -54,9 +71,6 @@
     [self sendTransRequest:@"COLABO_SNDCE_L101"];
 }
 
-- (void)rightButtonClicked:(UIButton *)sender{
-    
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -70,12 +84,12 @@
     CBCreateViewCell *cell = (CBCreateViewCell *)[tableView dequeueReusableCellWithIdentifier:IdentifierCell];
     if (cell == nil) {
         
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCell" owner:self options:nil];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CBCreateViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
     
     cell.CBPersonCheckbox.image = [UIImage imageNamed:@"checkbox_default.png"];
-    cell.CBPersonName.text = respDataArray[indexPath.row][@"RCVR_ID"];
+    cell.CBPersonName.text = respDataArray[indexPath.row][@"RCVR_NM"];
     
     NSString *imageFile = respDataArray[indexPath.row][@"PRFL_PHTG"];
     if (![SysUtils isNull:imageFile]) {
@@ -113,74 +127,94 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     CBCreateViewCell *cell = (CBCreateViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-    
 
     // Check box condition
     if ([cell.CBPersonCheckbox.image isEqual:[UIImage imageNamed:@"checkbox_default.png"]]) {
-        [personArray addObject:respDataArray[indexPath.row]];
         cell.CBPersonCheckbox.image = [UIImage imageNamed:@"checkbox_select.png"];
+        [personArray addObject:resDataTemp[indexPath.row]];
         
-//////////////////////////////// below is to move your view by constant////////////////////////////////
-        // 104 = your scrollView Hieght
-            self.verticalSearchViewConstraint.constant = 104;
-        ////////////////////////////////////////////////////////////////////////////
     }else{
         cell.CBPersonCheckbox.image = [UIImage imageNamed:@"checkbox_default.png"];
-        [personArray removeObject:[respDataArray objectAtIndex:indexPath.row]];
+        [personArray removeObject:[resDataTemp objectAtIndex:indexPath.row]];
         
-        ////////////set constant to 0 when user unselected//////////////////////////////////
-            self.verticalSearchViewConstraint.constant = 0;
-        ////////////////////////////////////////////////////////////////////////////////////
+        UIView *view = (UIView *)[personView viewWithTag:indexPath.row];
+        [view removeFromSuperview];
+        
+        
+        
+        xOffset = xOffset - kKeyXOffset;
+        NSLog(@"%@",personArray);
     }
    
 //    // Count for show delete person
     if (personArray.count > 0) {
         
-        CGRect rect = self.CBContentViewController.frame;
-        rect.origin.y = 0;
-        self.CBContentViewController.frame = rect;
+        //////////////////////////////// below is to move your view by constant////////////////////////////////
+        // 104 = your scrollView Hieght
+        self.verticalSearchViewConstraint.constant = 104;
+        ////////////////////////////////////////////////////////////////////////////
+        self.CBScrollViewListDelete.backgroundColor = RGB(242, 242, 242);
+
+
+        if ([cell.CBPersonCheckbox.image isEqual:[UIImage imageNamed:@"checkbox_select.png"]]) {
+//            personTagCount +=1;
+//            int currentView;
+//            NSString *rView = [NSString stringWithFormat:@"View%d",currentView];
+            
+            personView = [[UIView alloc ] initWithFrame:CGRectMake(xOffset, 0, 50, 90)];
+            UIImageView *personImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"person_icon.png"]];
+            personImage.frame = CGRectMake(5, 16, 41, 41);
+            personImage.layer.cornerRadius = personImage.frame.size.height /2;
+            personImage.layer.masksToBounds = YES;
+            personImage.layer.borderWidth = 0;
+            personImage.image = cell.CBPersonImage.image;
+            [personView addSubview:personImage];
+            
+            UIImage* imgNormal					= [UIImage imageNamed:@"img_del_btn.png"];
+            UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(30, 8, 18, 18)];
+            [deleteButton setBackgroundImage:imgNormal forState:UIControlStateNormal];
+            [deleteButton addTarget:self action:@selector(onDeletePerson) forControlEvents:UIControlEventTouchDown];
+            [personView addSubview:deleteButton];
+            
+            UILabel *personName = [[UILabel alloc] initWithFrame:CGRectMake(0, 62, 50, 20)];
+            personName.text = cell.CBPersonName.text;
+            personName.textColor = RGB(80, 80, 80);
+            personName.textAlignment = NSTextAlignmentCenter;
+            [personName setFont:[UIFont fontWithName: @"Helvetica" size: 15.0f]];
+            
+            [personView addSubview:personName];
+            personView.tag = indexPath.row;
+            
+//            [viewArray addObject:personView];
+            
+            NSLog(@"%@",personView);
+            [personDeleteArray addObject:personView];
+            [self.CBScrollViewListDelete addSubview:personView];
+            
+            xOffset = xOffset + kKeyXOffset;
+ 
+//            if (xOffset > 320) {
+//               self.CBScrollViewListDelete.frame = CGRectMake(0, 60, 640, 104);
+//                NSLog(@"%@",self.CBScrollViewListDelete);
+//            }
+           
+        }
         
         // show
-         NSLog(@"// close%d",personArray.count);
+//         NSLog(@"// add %d",personArray.count);
         //        self.CBScrollViewListDelete.frame = CGRectMake(0, 0, 320, 90);
         
-        personView = [[UIView alloc ] initWithFrame:CGRectMake(18, 0, 50, 90)];
-        UIImageView *personImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"person_icon.png"]];
-        personImage.frame = CGRectMake(5, 16, 41, 41);
-        [personView addSubview:personImage];
-
-        UILabel *personName = [[UILabel alloc] initWithFrame:CGRectMake(0, 62, 50, 20)];
-        personName.text = cell.CBPersonName.text;
-        personName.textColor = RGB(80, 80, 80);
-        personName.textAlignment = NSTextAlignmentCenter;
-        [personName setFont:[UIFont fontWithName: @"System" size: 15.0f]];
-        [personView addSubview:personName];
-        
-        [self.CBScrollViewListDelete addSubview:personView];
-     
-
-//        self.CBScrollViewListDelete.hidden = NO;
-    
-       
-
-      
         
     }else{
         
-        CGRect rect = self.CBContentViewController.frame;
-        rect.origin.y = -90;
-        self.CBContentViewController.frame = rect;
-        [personView removeFromSuperview];
-      
-//        self.CBScrollViewListDelete.hidden = YES;
-        // close
-        
-        
-
+//         NSLog(@"// remove %d",personArray.count);
+        ////////////set constant to 0 when user unselected//////////////////////////////////
+        self.verticalSearchViewConstraint.constant = 0;
+        ////////////////////////////////////////////////////////////////////////////////////
+        self.CBScrollViewListDelete.backgroundColor = [UIColor whiteColor];
     }
     
-     NSLog(@"%@",NSStringFromCGRect(self.CBContentViewController.frame));
-    
+     NSLog(@"%@",SENSet);
 }
 
 
@@ -191,21 +225,79 @@
     spinnerView = [SpinnerView loadSpinnerIntoView:self.view];
     NSString *userID = [SessionManager sharedSessionManager].userID;// getUserID
     NSMutableDictionary *reqData = [[NSMutableDictionary alloc] init];
-    [reqData setObject:userID forKey:@"USER_ID"];
+    
+    if ([tranCd isEqualToString:@"COLABO_C104"]) {
+        [reqData setObject:userID forKey:@"USER_ID"];
+        [reqData setObject:self.COLABO_SRNO forKey:@"COLABO_SRNO"];
+        [reqData setObject:resDataTemp forKey:@"SENDIENCE_REC"];
+    }else{
+        [reqData setObject:userID forKey:@"USER_ID"];
+    }
+    
     [super sendTransaction:tranCd requestDictionary:reqData];
 }
 
-- (void)returnTrans:(NSString *)transCode responseArray:(NSArray *)responseArray success:(BOOL)success{
-    
-    respDataArray = [[NSArray alloc] initWithArray:responseArray[0][@"SENDIENCE_REC"]];
-    [spinnerView removeSpinnerView]; // remove wating screen
-    [self.tableView reloadData];
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.destinationViewController isKindOfClass:[CBGroupViewController class]]){
+        CBGroupViewController *groupView= segue.destinationViewController;
+        groupView.COLABO_SRNO = _COLABO_SRNO;
+    }else if([segue.destinationViewController isKindOfClass:[CBCreateCollaboViewController class]]){
+        CBCreateCollaboViewController *createCollaboView= segue.destinationViewController;
+        createCollaboView.resDataTemp = personArray;
+    }
 }
 
 
+- (void)returnTrans:(NSString *)transCode responseArray:(NSArray *)responseArray success:(BOOL)success{
+    [spinnerView removeSpinnerView]; // remove wating screen
+    if ([transCode isEqualToString:@"COLABO_C104"]) {
+        [self.delegate addFinished];
+        _COLABO_SRNO = responseArray[0][@"COLABO_SRNO"];
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        respDataArray = [[NSArray alloc] initWithArray:responseArray[0][@"SENDIENCE_REC"]];
+        
+        resDataTemp = [[NSMutableArray alloc] init];
+        for (int i=0; i<respDataArray.count; i++) {
+            NSMutableDictionary *resData = [[NSMutableDictionary alloc] init];
+            [resData setObject:respDataArray[i][@"RCVR_ID"] forKey:@"RCVR_ID"];
+            [resData setObject:respDataArray[i][@"RCVR_NM"] forKey:@"RCVR_NM"];
+            [resData setObject:respDataArray[i][@"RCVR_GB"] forKey:@"RCVR_GB"];
+            [resDataTemp addObject:resData];
+        }
+        
+        [self.tableView reloadData];
+    }
+    
+}
 
+#pragma mark - Method
+- (void)rightButtonClicked:(UIButton *)sender{
+    if (self.isCreateColabo == YES) {
+        // go to create
+        if (personArray.count == 0) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"알림"
+                                                            message:@"선택된 참여자가 없습니다."
+                                                           delegate:self
+                                                  cancelButtonTitle:@"확인"
+                                            otherButtonTitles:nil];
+            [alert show];
 
-#pragma mark- Button Implement
+        }else{
+           [self performSegueWithIdentifier:@"SegueCBCreateCollaboView" sender:nil];
+        }
+        
+
+    }else{
+        [self sendTransRequest:@"COLABO_C104"];
+    }
+}
+
+-(void)onDeletePerson{
+    NSLog(@"Deleted");
+}
+
+#pragma mark- Button IB
 - (IBAction)CBScrollViewListDeleteButtonPress:(UIButton *)sender {
     
 }

@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CBIntroViewController.h"
+#import "SecurityManager.h"
+#import "SessionManager.h"
+#import "AppUtils.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,SecurityManagerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (strong, nonatomic) CBIntroViewController *CBIntro;
+@property (strong, nonatomic) UINavigationController *navigation;
 
 @end
 

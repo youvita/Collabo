@@ -13,7 +13,7 @@
 #import "SessionManager.h"
 #import "UserSettings.h"
 #import "AppUtils.h"
-#import "CoreDataHeader.h"
+//#import "CoreDataHeader.h"
 #import "JSON.h"
 
 @implementation GateViewCtrl

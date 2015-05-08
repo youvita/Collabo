@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WCViewController.h"
+#import "Constants.h"
+#import "AllUtils.h"
+#import "SpinnerView.h"
 
-@interface CBWebViewViewController : UIViewController
+@interface CBWebViewViewController : WCViewController
+
+@property (strong, nonatomic)NSString *webUrl;
+@property (strong, nonatomic)NSString *webTitle;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end

@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface CBGroupViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *CBGPersonIcon;
+@property (weak, nonatomic) IBOutlet UILabel *CBGPersonName;
+@property (weak, nonatomic) IBOutlet UILabel *CBGPersonCompany;
+@property (weak, nonatomic) IBOutlet UIImageView *CBGSendingType;
+@property (weak, nonatomic) IBOutlet UIButton *CBGButtonOut;
 
 @end

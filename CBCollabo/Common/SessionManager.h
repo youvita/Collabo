@@ -70,6 +70,8 @@ typedef enum {
     NSMutableArray*             _ImageName;             // in form create collabo
     
     NSString*                   _serverUrlString;
+    NSString*                   _userPassword;
+
 }
 
 @property (nonatomic, retain) NSMutableArray* ImageDataArr;
@@ -90,6 +92,7 @@ typedef enum {
 @property (nonatomic, retain) NSString*       saveID;
 @property (nonatomic, retain) NSString*       appUrl;
 @property (nonatomic, retain) NSString*       userNameString;
+@property (nonatomic, retain) NSString*       userPassword;
 @property (nonatomic, retain) NSString*       menuTitleString;
 @property (nonatomic, retain) NSString*       isWriteList;
 @property (nonatomic, retain) NSString*       sessionOutString;

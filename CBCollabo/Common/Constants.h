@@ -358,7 +358,9 @@
 #define	kKeyBadgeType						@"_badgeType"
 #define kKeyBadgeCount						@"_badgeCount"
 
-
+#define kPortalID                           @"c_portal_id"
+#define kChannelID                          @"c_channel_id"
+#define kCollaboURL                         @"c_bizplay_url"
 
 #pragma mark-
 #pragma mark Trans document constants

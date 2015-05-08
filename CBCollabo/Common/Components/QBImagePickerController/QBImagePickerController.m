@@ -16,6 +16,7 @@
 // ViewControllers
 #import "QBAssetsCollectionViewController.h"
 
+
 ALAssetsFilter * ALAssetsFilterFromQBImagePickerControllerFilterType(QBImagePickerControllerFilterType type) {
     switch (type) {
         case QBImagePickerControllerFilterTypeNone:
@@ -102,17 +103,18 @@ ALAssetsFilter * ALAssetsFilterFromQBImagePickerControllerFilterType(QBImagePick
     // Validation
     self.navigationItem.rightBarButtonItem.enabled = [self validateNumberOfSelections:self.selectedAssetURLs.count];
     
-//    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:95/255.0 green:90/255.0 blue:185/255.0 alpha:1];
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:95/255.0 green:90/255.0 blue:185/255.0 alpha:1];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
-    //=======Add Here==========//
-    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
-    
-    self.navigationController.navigationBar.backgroundColor=[UIColor colorWithRed:95/255.0 green:90/255.0 blue:185/255.0 alpha:1];
-    
-    
-    UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, -20, [[UIScreen mainScreen] bounds].size.width, 22)];
-    statusBarView.backgroundColor = [UIColor colorWithRed:95/255.0 green:90/255.0 blue:185/255.0 alpha:1];
-    [self.navigationController.navigationBar addSubview:statusBarView];
+//    //=======Add Here==========//
+//    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+//    
+//    self.navigationController.navigationBar.backgroundColor=[UIColor colorWithRed:95/255.0 green:90/255.0 blue:185/255.0 alpha:1];
+//    
+//    
+//    UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, -20, [[UIScreen mainScreen] bounds].size.width, 22)];
+//    statusBarView.backgroundColor = [UIColor colorWithRed:95/255.0 green:90/255.0 blue:185/255.0 alpha:1];
+//    [self.navigationController.navigationBar addSubview:statusBarView];
     
 }
 
@@ -126,17 +128,17 @@ ALAssetsFilter * ALAssetsFilterFromQBImagePickerControllerFilterType(QBImagePick
     if (showsCancelButton) {
 //        UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
 //        [self.navigationItem setLeftBarButtonItem:cancelButton animated:NO];
-        
+        [AppUtils settingLeftButton:self action:@selector(cancel:) normalImageCode:@"top_cancel_btn.png" highlightImageCode:@"top_cancel_btn_p.png"];
     
-        UIImage * image = [UIImage imageNamed:@"top_cancel_btn.png"];
-        CGSize sacleSize = CGSizeMake(40, 30);
-        UIGraphicsBeginImageContextWithOptions(sacleSize, NO, 0.0);
-        [image drawInRect:CGRectMake(0, 0, sacleSize.width, sacleSize.height)];
-        UIImage * resizedImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        UIBarButtonItem *cancelButton =[[UIBarButtonItem alloc]initWithImage:resizedImage landscapeImagePhone:nil style:UIBarButtonItemStyleDone target:self action:@selector(cancel:)];
-        [self.navigationItem setLeftBarButtonItem:cancelButton animated:NO];
+//        UIImage * image = [UIImage imageNamed:@"top_cancel_btn.png"];
+//        CGSize sacleSize = CGSizeMake(40, 30);
+//        UIGraphicsBeginImageContextWithOptions(sacleSize, NO, 0.0);
+//        [image drawInRect:CGRectMake(0, 0, sacleSize.width, sacleSize.height)];
+//        UIImage * resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+//        UIGraphicsEndImageContext();
+//        
+//        UIBarButtonItem *cancelButton =[[UIBarButtonItem alloc]initWithImage:resizedImage landscapeImagePhone:nil style:UIBarButtonItemStyleDone target:self action:@selector(cancel:)];
+//        [self.navigationItem setLeftBarButtonItem:cancelButton animated:NO];
     } else {
         [self.navigationItem setLeftBarButtonItem:nil animated:NO];
     }

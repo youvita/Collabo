@@ -81,7 +81,8 @@ static NSInteger kIndicatorSize = 32;
 		[SysUtils showMessage:@"인터넷이 원활하지 않습니다. 잠시 후 다시 시도하여 주십시오."];
 		[reqDocument release];
 		return;
-	}
+    }
+    
 	[reqDocument release];
 	
 	if (_waitSplashEnabled){
@@ -324,13 +325,13 @@ static NSInteger kIndicatorSize = 32;
 - (void)setTitle:(NSString *)aTitle {
 	[super setTitle:aTitle];
     
-//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
-//    label.backgroundColor = [UIColor clearColor];
-//    label.textAlignment = NSTextAlignmentCenter;
-//    label.textColor =[UIColor whiteColor];
-//    label.font = [UIFont boldSystemFontOfSize:18];
-//    label.text=self.title;
-//    self.navigationItem.titleView = label;
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
+    label.backgroundColor = [UIColor clearColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor =[UIColor whiteColor];
+    label.font = [UIFont boldSystemFontOfSize:18];
+    label.text=self.title;
+    self.navigationItem.titleView = label;
     [AppUtils settingNavigationBarTitle:self title:aTitle];
 
 }

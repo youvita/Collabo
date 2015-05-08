@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "AllUtils.h"
 
 typedef NS_ENUM(NSUInteger, QBImagePickerControllerFilterType) {
     QBImagePickerControllerFilterTypeNone,

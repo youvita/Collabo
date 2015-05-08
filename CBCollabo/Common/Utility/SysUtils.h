@@ -141,8 +141,6 @@
  */
 + (NSString *)doubleToString:(double) value;
 
-
-
 /////////////////////////////////////////////////////////////////////////////////////////////
 /** Dobule형을 integer 영역 String으로 변환 편의 함수
  
@@ -482,4 +480,13 @@
 + (NSData *)md5tem:(NSString *)mD5;
 //+ (char *)MD5;
 
++ (CGFloat)measureTextHeight:(NSString*)text fontName:(NSString*)fontName fontSize:(CGFloat)fontSize constrainedToSize:(CGSize)constrainedToSize;
+
++ (CGFloat)measureTextWidth:(NSString*)text fontName:(NSString*)fontName fontSize:(CGFloat)fontSize constrainedToSize:(CGSize)constrainedToSize;
+
+////////////////////////////////////////////////////////////////////////////////////////////
+/*
+ Convert Size of file or image
+ */
++ (id)transformedValue:(id)value;
 @end

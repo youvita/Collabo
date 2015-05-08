@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface CBCreateViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *CBPersonImage;
+@property (weak, nonatomic) IBOutlet UILabel *CBPersonName;
+@property (weak, nonatomic) IBOutlet UIImageView *CBPersonCheckbox;
+@property (weak, nonatomic) IBOutlet UIImageView *CBLineTop;
 
 @end

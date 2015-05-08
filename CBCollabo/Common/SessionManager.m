@@ -14,6 +14,10 @@
 
 
 #define kSettingDic						@"settingDic"
+#define kIntro                          @"intro"
+#define kAutoLogin                      @"autoLogin"
+#define kUserName                       @"userName"
+#define kUserPass                       @"userPass"
 
 @interface SessionManager()
 
@@ -39,6 +43,7 @@
 @synthesize isNetworkStuts      = _isNetworkStuts;
 
 @synthesize userNameString      = _userNameString;
+@synthesize userPassword        = _userPassword;
 @synthesize menuTitleString     = _menuTitleString;
 @synthesize loginDataDic        = _loginDataDic;
 @synthesize managedObjectContext   = _managedObjectContext;
@@ -150,6 +155,7 @@ static SessionManager *sessionMgr = nil;
         _latestVersion      = [[NSString alloc]init];
         _appUrl             = nil;
         _userNameString     = nil;
+        _userPassword       = nil;
         _serverUrlString    = nil;
         _bIsLogin			= NO;
         _isNetworkStuts     = NO;
@@ -241,8 +247,6 @@ static SessionManager *sessionMgr = nil;
 }
 
 
-
-
 - (void)setSaveID:(NSString *)aSaveID{
 	_saveID = aSaveID;
 	[self saveSetting];
@@ -253,7 +257,42 @@ static SessionManager *sessionMgr = nil;
 	return _saveID;
 }
 
+// Save first setup
+- (BOOL)isFirstSetUp{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kIntro];
+}
 
+- (void)setIsFirstSetUp:(BOOL)isFirstSetUp{
+    [[NSUserDefaults standardUserDefaults] setBool:isFirstSetUp forKey:kIntro];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 
+// Save auto login
+- (BOOL)bIsLogin{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kAutoLogin];
+}
+
+- (void)setBIsLogin:(BOOL)bIsLogin{
+    [[NSUserDefaults standardUserDefaults] setBool:bIsLogin forKey:kAutoLogin];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)setUserNameString:(NSString *)userNameString{
+    [[NSUserDefaults standardUserDefaults] setObject:userNameString forKey:kUserName];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)setUserPassword:(NSString *)userPassword{
+    [[NSUserDefaults standardUserDefaults] setObject:userPassword forKey:kUserPass];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString *)userNameString{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:kUserName];
+}
+
+- (NSString *)userPassword{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:kUserPass];
+}
 
 @end

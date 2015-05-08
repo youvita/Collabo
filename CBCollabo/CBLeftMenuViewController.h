@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WCViewController.h"
+#import "AppUtils.h"
+#import "SecurityManager.h"
+#import "SessionManager.h"
+#import "Constants.h"
+#import "SpinnerView.h"
+#import "AllUtils.h"
 
-@interface LeftMenuViewController : UIViewController
+@interface CBLeftMenuViewController : WCViewController<UITableViewDataSource,UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

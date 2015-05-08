@@ -65,6 +65,7 @@
     }
 }
 
+
 // -가 없는 전화번호를 넣으면 -이 있는 스트링을 보내는 함수
 // 예) 027841690 => 02-784-1690
 
@@ -672,6 +673,24 @@
 }
 
 
++ (id)transformedValue:(id)value
+{
+    
+    double convertedValue = [value doubleValue];
+    int multiplyFactor = 0;
+    
+    NSArray *tokens = [NSArray arrayWithObjects:@"bytes",@"KB",@"MB",@"GB",@"TB",nil];
+    
+    while (convertedValue > 1024) {
+        convertedValue /= 1024;
+        multiplyFactor++;
+    }
+    
+    return [NSString stringWithFormat:@"%4.2f %@",convertedValue, [tokens objectAtIndex:multiplyFactor]];
+}
+
+
+
 + (NSString *)getDeviceModel {
     return [NSString stringWithFormat:@"%@ (%@)", [UIDevice currentDevice].model, [UIDevice currentDevice].systemVersion];
 }
@@ -926,6 +945,16 @@
     //	return result;
     
     
+}
+
++ (CGFloat)measureTextHeight:(NSString *)text fontName:(NSString *)fontName fontSize:(CGFloat)fontSize constrainedToSize:(CGSize)constrainedToSize{
+    CGSize mTempSize = [text sizeWithFont:[UIFont fontWithName:fontName size:fontSize] constrainedToSize:constrainedToSize lineBreakMode:UILineBreakModeWordWrap];
+    return mTempSize.height;
+
+}
++(CGFloat)measureTextWidth:(NSString *)text fontName:(NSString *)fontName fontSize:(CGFloat)fontSize constrainedToSize:(CGSize)constrainedToSize{
+    CGSize mTempSize = [text sizeWithFont:[UIFont fontWithName:fontName size:fontSize] constrainedToSize:constrainedToSize lineBreakMode:UILineBreakModeWordWrap];
+    return mTempSize.width;
 }
 
 @end

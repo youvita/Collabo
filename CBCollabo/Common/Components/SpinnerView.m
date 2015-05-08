@@ -17,7 +17,7 @@
     // Create a new image view, from the image made by our gradient method
     UIImageView *background = [[UIImageView alloc] initWithImage:[spinnerView addBackground]];
     // Make a little bit of the superView show through
-    background.alpha = 0.5;
+    background.alpha = 0.1;
     [spinnerView addSubview:background];
     
 //    // If something's gone wrong, abort!
@@ -51,9 +51,15 @@
         [imageload addObject:[UIImage imageNamed:[imageName objectAtIndex:i]]];
     }
     
-    UIImageView *animationLoad = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+//    CGRect screenRect = [[UIScreen mainScreen] bounds];
+//    CGFloat screenWidth = screenRect.size.width;
+//    CGFloat screenHight = screenRect.size.height;
+    
+    NSLog(@"Height and Width:%f %f",[self windowWidth],[self windowHeight]);
+    
+    UIImageView *animationLoad = [[UIImageView alloc] initWithFrame:CGRectMake(([self windowWidth]/2)-10, ([self windowHeight]/2)-40, 25, 25)];
     animationLoad.animationImages = imageload;
-    animationLoad.center = superView.center;
+//    animationLoad.center = superView.center;
     animationLoad.animationDuration = 1;
     
     [spinnerView addSubview:animationLoad];
@@ -64,9 +70,17 @@
     
     // Add the spinner view to the superView. Boom.
     [superView addSubview:spinnerView];
-    [superView release];
+//    [superView release];
     [animationLoad startAnimating];
     return spinnerView;
+}
+
++ (CGFloat)windowHeight{
+    return [UIScreen mainScreen].applicationFrame.size.height;
+}
+
++ (CGFloat)windowWidth{
+    return [UIScreen mainScreen].applicationFrame.size.width;
 }
 
 - (UIImage *)addBackground{

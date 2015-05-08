@@ -56,6 +56,21 @@
  */
 + (void)settingLeftButton:(id)aTarget action:(SEL)aAction normalImageCode:(NSString *)aNormalImageCode highlightImageCode:(NSString *)aHighlightImageCode;
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+/** 네비게이션 좌측 버튼 세팅 함수
+ 
+ Navigation Bar alter right Button setting
+ 
+ @param target				UIViewController
+ @param action				Selector receive Action
+ @param normalImageCode		Normal Image Code
+ @param highlightImageCode	highlight Image Code
+ 
+ @see settingBackButton:action:
+ @see settingRightButton:action:normalImageCode:highlightImageCode:
+ 
+ */
++ (void)settingAfterRightButton:(id)aTarget action:(SEL)aAction normalImageCode:(NSString *)aNormalImageCode highlightImageCode:(NSString *)aHighlightImageCode;
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////

@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WCViewController.h"
+#import "AllUtils.h"
 
-@interface CBAlarmList101 : UIViewController
+@interface CBAlarmList101ViewController:WCViewController <UITableViewDelegate,UITableViewDataSource>{
+    //====== For pull to Refresh
+    BOOL isDragging;
+    BOOL isLoading;
+    
+}
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+//===========Pull to Refresh Property ===========//
+@property (nonatomic, retain) UIView *refreshHeaderView;
+@property (nonatomic, retain) UIImageView *refreshArrow;
 
 @end

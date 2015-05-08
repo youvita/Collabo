@@ -565,5 +565,11 @@ static const NSString *KEY_PREFIX_VALUE	= @"BizplayKey"; //우리은행 키로 �
     
 }
 
+- (CGFloat)measureTextWidth:(NSString *)text fontName:(NSString *)fontName fontSize:(CGFloat)fontSize constrainedToSize:(CGSize)constrainedToSize{
+    CGSize mTempSize = [text sizeWithFont:[UIFont fontWithName:fontName size:fontSize] constrainedToSize:constrainedToSize lineBreakMode:UILineBreakModeWordWrap];
+//    return mTempSize.height;
+        return mTempSize.width;
+}
+
 
 @end
