@@ -1,0 +1,15 @@
+//
+//  CBCollabo.pch
+//  CBCollabo
+//
+//  Created by Chan Youvita on 3/20/15.
+//  Copyright (c) 2015 Kosign. All rights reserved.
+//
+
+#ifndef CBCollabo_CBCollabo_pch
+#define CBCollabo_CBCollabo_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif
