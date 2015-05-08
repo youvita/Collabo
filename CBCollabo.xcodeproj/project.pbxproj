@@ -339,6 +339,7 @@
 		3EB6BDED1AD2107E00CB2D28 /* CBMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB6BDEC1AD2107E00CB2D28 /* CBMoreViewController.m */; };
 		3EB6BDF01AD2386B00CB2D28 /* CBCreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB6BDEF1AD2386B00CB2D28 /* CBCreateViewController.m */; };
 		3EB6BDF31AD2840B00CB2D28 /* CBMoreViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB6BDF21AD2840B00CB2D28 /* CBMoreViewCell.m */; };
+		3EBB18671AFC728600C08363 /* ToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EBB18661AFC728600C08363 /* ToastView.m */; };
 		3EBD2D051ADCC5C90031F129 /* CBCreateCollaboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD2D041ADCC5C90031F129 /* CBCreateCollaboViewController.m */; };
 		3EBE363B1ACE958600A92B98 /* CBSingupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EBE363A1ACE958600A92B98 /* CBSingupViewController.m */; };
 /* End PBXBuildFile section */
@@ -826,6 +827,8 @@
 		3EB6BDEF1AD2386B00CB2D28 /* CBCreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBCreateViewController.m; sourceTree = "<group>"; };
 		3EB6BDF11AD2840B00CB2D28 /* CBMoreViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBMoreViewCell.h; sourceTree = "<group>"; };
 		3EB6BDF21AD2840B00CB2D28 /* CBMoreViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBMoreViewCell.m; sourceTree = "<group>"; };
+		3EBB18651AFC728600C08363 /* ToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastView.h; sourceTree = "<group>"; };
+		3EBB18661AFC728600C08363 /* ToastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastView.m; sourceTree = "<group>"; };
 		3EBD2D031ADCC5C90031F129 /* CBCreateCollaboViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBCreateCollaboViewController.h; sourceTree = "<group>"; };
 		3EBD2D041ADCC5C90031F129 /* CBCreateCollaboViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBCreateCollaboViewController.m; sourceTree = "<group>"; };
 		3EBE36391ACE958600A92B98 /* CBSingupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSingupViewController.h; sourceTree = "<group>"; };
@@ -1186,6 +1189,8 @@
 		3EA0FD871ABFA21A00280D5B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				3EBB18651AFC728600C08363 /* ToastView.h */,
+				3EBB18661AFC728600C08363 /* ToastView.m */,
 				3EB0FD441AE736F4002DD3D3 /* QBImagePickerController */,
 				3EA210051AC4043700B88787 /* SpinnerView.h */,
 				3EA210061AC4043700B88787 /* SpinnerView.m */,
@@ -2053,6 +2058,7 @@
 				3EA0FE9C1ABFA21A00280D5B /* NSObject+SBJSON.m in Sources */,
 				3EA0FEDD1ABFA21A00280D5B /* TitleBoxView.m in Sources */,
 				3EA0FE911ABFA21A00280D5B /* UIImage+Effect.m in Sources */,
+				3EBB18671AFC728600C08363 /* ToastView.m in Sources */,
 				3EA0FE891ABFA21A00280D5B /* CustomCalendarView.m in Sources */,
 				3EA0FE871ABFA21A00280D5B /* ImageCache.m in Sources */,
 				3EA0FEB41ABFA21A00280D5B /* IPAddress.c in Sources */,
